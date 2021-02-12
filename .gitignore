@@ -1,0 +1,4 @@
+env_cargamos
+.vscode
+__pycache__
+db.sqlite
