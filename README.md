@@ -32,6 +32,12 @@ Se corre el proyecto.
 flask run 
 ```
 
+Se corre el test o todos los test.
+```sh
+python -m unittest tests/test_create_shop.py
+python -m unittest --buffer
+```
+
 
 ### Módulos incluidos
 - 1.- API en donde se pueda crear la tienta
