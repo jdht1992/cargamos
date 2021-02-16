@@ -5,6 +5,7 @@ from app import app
 from config import db
 from models.address import Address
 from models.shop import Shop
+from models.catalog import Catalog
 
 
 class ProductTest(unittest.TestCase):
@@ -21,16 +22,22 @@ class ProductTest(unittest.TestCase):
             "country": "cuarto",
             "name_code": "123abc"
         }
-        
         address = Address(**address_data)
         address.save()
 
         shop_data = {
-            "name": "exameple10",
+            "name": "un ejemplo mas",
             "address_id": address.id
         }
         shop = Shop(**shop_data)
         shop.save()
+
+        catalog_data = {
+            "name": "catalogo",
+            "shop_id": shop.id
+        }
+        catalog = Catalog(**catalog_data)
+        catalog.save()
 
         # Given
         payload = json.dumps({
@@ -39,7 +46,7 @@ class ProductTest(unittest.TestCase):
             "price": 2.2,
             "is_featured": True,
             "sku": "abc1233333",
-            "catalog_id": 1,
+            "catalog_id": catalog.id,
             "quantity": 5,
             "shop_id": shop.id
         })
@@ -47,7 +54,7 @@ class ProductTest(unittest.TestCase):
         # When
         response = self.app.post(
             '/api/v1/product/', 
-            headers={"Content-Type": "application/json"}, 
+            headers={"Content-Type": "application/json"},
             data=payload
             )
 

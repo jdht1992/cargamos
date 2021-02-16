@@ -14,7 +14,7 @@ class ShopTest(unittest.TestCase):
     def test_successful_shop(self):
         # Given
         payload = json.dumps({
-            "name": "exameple10",
+            "name": "exameple",
             "address_id":
                 {
                     "street": "primera",

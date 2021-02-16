@@ -29,10 +29,8 @@ pip install -r requirements.txt
 
 Se corre el proyecto.
 ```sh
-
+flask run 
 ```
-
-
 
 
 ### Módulos incluidos
@@ -81,11 +79,11 @@ PayLoad
  ```sh
 {
     "title": "Product1",
-    "description": "un articulo de ropa",
+    "description": "un producto muy bueno",
     "price": 35.2,
     "is_featured": true,
     "sku": "abc1234",
-    "catalog_id": 3,
+    "catalog_id": 1,
     "quantity": 5,
     "shop_id": 1
 }
