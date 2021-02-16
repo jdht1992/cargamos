@@ -9,7 +9,7 @@ class ShopTest(unittest.TestCase):
 
     def setUp(self):
         self.app = app.test_client()
-        # self.db = db.get_db()
+        db.create_all()
 
     def test_successful_shop(self):
         # Given
@@ -22,13 +22,12 @@ class ShopTest(unittest.TestCase):
                     "state": "tercero",
                     "country": "cuarto",
                     "name_code": "123abc"
-                },
-            "catalog_id": 1
+                }
         })
 
         # When
         response = self.app.post(
-            '/api/ceate-shop/', 
+            '/api/v1/shop/', 
             headers={"Content-Type": "application/json"}, 
             data=payload
             )
@@ -37,7 +36,6 @@ class ShopTest(unittest.TestCase):
         self.assertEqual(dict, type(response.json))
         self.assertEqual(201, response.status_code)
 
-    # def tearDown(self):
-    #     # Delete Database collections after the test is complete
-    #     for collection in self.db.list_collection_names():
-    #         self.db.drop_collection(collection)
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
