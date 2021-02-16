@@ -14,7 +14,7 @@ class CreateProduct(Resource):
         quantity = product_data.pop("quantity", None)
         shop_id = product_data.pop("shop_id", None)
         product = Product(**product_data)
-        print("===========entro1")
+
         try:
             product.save()
         except:
@@ -26,7 +26,6 @@ class CreateProduct(Resource):
             "shop_id": shop_id
         }
         
-        print("===========entro1")
         inventory = Inventory(**inventory_data)
 
         try:
