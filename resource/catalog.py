@@ -1,18 +1,18 @@
-from flask import Flask, request, jsonify, Response
+from flask import request
 from models.catalog import Catalog
 from schemas.catalog import CatalogSchema
 from flask_restful import Resource
-from config import app
-from flask_marshmallow import Marshmallow
 
 
-ma = Marshmallow(app)
+ERROR_INSERTING = "An error ocurred while inserting catalog"
 
 
 class CreateCatalog(Resource):
     def post(self):
-        response = CatalogSchema().load(request.json)
-        catalog = Catalog(**response)
-        catalog.save()
-        # return { "catalog": True }, 201
-        return {'id': str(catalog.id)}, 201
+        catalog_data = CatalogSchema().load(request.json)
+        catalog = Catalog(**catalog_data)
+        try:
+            catalog.save()
+        except:
+            return { "message": ERROR_INSERTING }, 500
+        return { 'id': str(catalog.id) }, 201

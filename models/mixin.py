@@ -2,12 +2,15 @@ from config import db
 
 
 class BaseModelMixin:
-    def save(self):
+    def save(self) -> None:
         """This methos create a row with the obj data"""
         db.session.add(self)
         db.session.commit()
-        return self.id
 
+    def delete(self) -> None:
+        "This method delete record from the db"
+        db.session.delete(self)
+        db.session.commit()
 
 class BaseModel(db.Model):
     __abstract__ = True

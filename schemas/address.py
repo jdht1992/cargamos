@@ -1,10 +1,8 @@
 from config import ma
-from marshmallow import Schema, fields
+from models.address import Address
 
 
 class AddressSchema(ma.Schema):
-    street = fields.String(required=True)
-    city = fields.String(required=True)
-    state = fields.String(required=True)
-    country = fields.String(required=True)
-    name_code = fields.String(required=True)
+    class Meta:
+        model = Address
+        fields = ("street", "city", "state", "country", "name_code")

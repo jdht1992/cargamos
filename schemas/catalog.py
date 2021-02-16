@@ -6,4 +6,4 @@ from models.catalog import Catalog
 class CatalogSchema(ma.Schema):
     class Meta:
         model = Catalog
-        fields = ("name", )
+        fields = ("name", "shop_id")
